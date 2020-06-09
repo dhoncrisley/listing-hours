@@ -1,7 +1,7 @@
 {
   "name": "listing-hours",
-  "version": "1.0.3",
-  "description": "Tiny utility for checking if store is opened or closed based on specific timezone",
+  "version": "1.0.34",
+  "description": "Tiny utility for checking if store is opened or closed with date-fns",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

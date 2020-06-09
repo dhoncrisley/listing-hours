@@ -25,9 +25,9 @@ class ListingHours {
     const readable = [];
 
     for (let i = 0; i < weekdays.length; ++i) {
-      const filtered = this.periods.filter((p) => p.open.day === i);
+      const filtered = this.periods.filter((p) => p.open.day == i);
 
-      if (filtered.length === 0) {
+      if (filtered.length == 0) {
         readable.push(`${weekdays[i]}: Fechado`);
         continue;
       }
@@ -48,7 +48,7 @@ class ListingHours {
           parse(sorted[j].close.time, "HHmm", new Date()),
           "HH:mm",
         );
-        if (start === end) {
+        if (start == end) {
           hr += `Aberto 24 horas`;
           break;
         }
@@ -70,22 +70,22 @@ class ListingHours {
     const now = new Date();
     // let  = getDay(current);
     const filtered = this.periods.filter((p) => {
-      return p.open.day === weekday || p.close.day === weekday;
+      return p.open.day == weekday || p.close.day == weekday;
     });
 
-    if (filtered.length === 0) return [];
+    if (filtered.length == 0) return [];
     const timeline = [];
     for (let i = 0; i < filtered.length; i++) {
       const f = filtered[i];
       let start, end;
-      if (f.open.day === weekday) {
+      if (f.open.day == weekday) {
         start = set(new Date(), {
           hours: f.open.time.substr(0, 2),
           minutes: f.open.time.substr(2, 4),
           seconds: 0,
           milliseconds: 0,
         });
-        if (f.close.day !== weekday) {
+        if (f.close.day != weekday) {
           end = set(new Date(), { hours: 23, minutes: 59, seconds: 59 });
         } else {
           end = set(new Date(), {
@@ -95,7 +95,7 @@ class ListingHours {
             milliseconds: 0,
           });
         }
-      } else if (f.close.day === weekday) {
+      } else if (f.close.day == weekday) {
         start = set(new Date(), { hours: 0, minutes: 0, seconds: 0 });
 
         end = set(new Date(), {
@@ -108,7 +108,7 @@ class ListingHours {
 
       timeline.push({
         start,
-        index: i,
+        index: f.index,
         end,
       });
     }
