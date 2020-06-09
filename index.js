@@ -28,7 +28,7 @@ class ListingHours {
       const filtered = this.periods.filter((p) => p.open.day == i);
 
       if (filtered.length == 0) {
-        readable.push(`${weekdays[i]}: Fechado`);
+        readable.push([weekdays[i], "Fechado"]);
         continue;
       }
 
@@ -38,7 +38,7 @@ class ListingHours {
           parse(b.open.time, "HHmm", new Date()),
       );
 
-      let hr = `${weekdays[i]}: `;
+      let hr = "";
       for (let j = 0; j < sorted.length; ++j) {
         const start = format(
           parse(sorted[j].open.time, "HHmm", new Date()),
@@ -58,7 +58,7 @@ class ListingHours {
           hr += ", ";
         }
       }
-      readable.push(hr);
+      readable.push([weekdays[i], hr]);
     }
     return readable;
   }
@@ -131,3 +131,40 @@ class ListingHours {
 }
 
 module.exports = ListingHours;
+
+const periods = [
+  {
+    close: {
+      day: 1,
+      time: "1200",
+    },
+    open: {
+      day: 1,
+      time: "0800",
+    },
+  },
+  {
+    close: {
+      day: 2,
+      time: "1400",
+    },
+    open: {
+      day: 2,
+      time: "1300",
+    },
+  },
+  {
+    close: {
+      day: 2,
+      time: "1200",
+    },
+    open: {
+      day: 2,
+      time: "0130",
+    },
+  },
+];
+const abc = new ListingHours(periods);
+
+console.log(abc.isOpen(2));
+console.log(abc.getHumanReadable());
