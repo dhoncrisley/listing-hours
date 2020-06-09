@@ -112,11 +112,9 @@ class ListingHours {
      * Returns back if restaurant is open or currently closed
      */
     isOpen(day = getDay(new Date())) {
-        console.log({ day })
         const current = new Date();
         const timeline = this.getDayHours(day);
         for (let t of timeline) {
-            console.log(t)
             if (isWithinInterval(current, { start: t.start, end: t.end })) return true;
         }
         return false;
