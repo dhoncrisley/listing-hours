@@ -23,7 +23,6 @@
   "author": "hafridi",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.28"
+    "date-fns": "^2.14.0"
   }
 }
