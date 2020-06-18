@@ -68,7 +68,10 @@ class ListingHours {
           hr += ", ";
         }
       }
-      readable.push([weekdays[i], hr]);
+      readable.push([
+        `${weekdays[i]}${todayWeekday == i ? " (hoje)" : ""}`,
+        hr,
+      ]);
     }
     return readable;
   }
