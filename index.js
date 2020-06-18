@@ -1,6 +1,13 @@
 "use strict";
 // const moment = require("moment-timezone");
-const { parse, getDay, format, set, isWithinInterval } = require("date-fns");
+const {
+  parse,
+  getDay,
+  format,
+  set,
+  isWithinInterval,
+  isToday,
+} = require("date-fns");
 
 const weekdays = [
   "Domingo",
@@ -23,12 +30,15 @@ class ListingHours {
    */
   getHumanReadable() {
     const readable = [];
-
+    const todayWeekday = getDay(new Date());
     for (let i = 0; i < weekdays.length; ++i) {
       const filtered = this.periods.filter((p) => p.open.day == i);
 
       if (filtered.length == 0) {
-        readable.push([weekdays[i], "Fechado"]);
+        readable.push([
+          `${weekdays[i]}${todayWeekday == i ? " (hoje)" : ""}`,
+          "Fechado",
+        ]);
         continue;
       }
 
@@ -131,3 +141,32 @@ class ListingHours {
 }
 
 module.exports = ListingHours;
+
+/* const periods = [
+  {
+    close: {
+      day: 2,
+      time: "1000",
+    },
+    open: {
+      day: 1,
+      time: "0700",
+    },
+  },
+  {
+    close: {
+      day: 7,
+      time: "2300",
+    },
+    open: {
+      day: 7,
+      time: "1730",
+    },
+  },
+];
+
+const abc = new ListingHours(periods, "America/Recife");
+
+console.log(abc.isOpen());
+console.log(abc.getHumanReadable());
+ */

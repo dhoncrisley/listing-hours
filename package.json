@@ -17,9 +17,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hafridi/listing-hours"
+    "url": "git+https://github.com/dhoncrisley/listing-hours"
   },
-  "homepage": "https://github.com/hafridi/listing-hours#readme",
+  "homepage": "https://github.com/dhoncrisley/listing-hours#readme",
   "author": "hafridi",
   "license": "ISC",
   "dependencies": {
