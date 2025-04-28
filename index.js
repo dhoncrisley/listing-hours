@@ -4,6 +4,9 @@ const moment = require("moment-timezone");
 class ListingHours {
 
     constructor(periods, timezone) {
+        if (typeof periods == "string") {
+            periods = JSON.parse(periods);
+        }
         this.periods = periods;
         this.timezone = timezone;
     }
