@@ -21,6 +21,9 @@ const weekdays = [
 ];
 class ListingHours {
   constructor(periods, timezone = "America/Recife") {
+    if (typeof periods == "string") {
+      periods = JSON.parse(periods);
+    }
     this.periods = periods;
     this.timezone = timezone;
   }
